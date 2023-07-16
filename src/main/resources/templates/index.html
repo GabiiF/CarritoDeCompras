@@ -60,20 +60,25 @@
                     <th scope="col">Descripcion</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Accion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="p1_0 : ${productList}">
-                    <td th:text="${p1_0.id}"></td>
-                    <td th:text="${p1_0.nombre}"></td>
-                    <td th:text="${p1_0.cantidad}"></td>
-                    <td th:text="${p1_0.tamanio}"></td>
-                    <td th:text="${p1_0.categoria}"></td>
-                    <td th:text="${p1_0.tipo}"></td>
-                    <td th:text="${p1_0.descripcion}"></td>
-                    <td th:text="${p1_0.precio}"></td>
-                    <td th:text="${p1_0.total}"></td>
-                    <td></td>
+                <tr th:each="producto : ${productList}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td th:text="${producto.tamanio}"></td>
+                    <td th:text="${producto.categoria}"></td>
+                    <td th:text="${producto.tipo}"></td>
+                    <td th:text="${producto.descripcion}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.total}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/editar-producto/' + ${producto.id}}">Editar</a>
+                        &nbsp;
+                        <a class="btn btn-danger" th:href="@{'/eliminar/' + ${producto.id}}">Eliminar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -55,6 +55,10 @@
                 <!-- cuando apreto el boton enviar hace la accion -->
                 <form th:action="@{/guardar}" th:object="${producto}" method="post">
                     <div class="form-group">
+                        <label>Producto ID : </label>
+                        <input type="text" name="nombre" th:field="*{id}" class="form-control" readonly="readonly">
+                    </div>
+                    <div class="form-group">
                         <label>Nombre : </label>
                         <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Agregue el nombre del producto" required>
                     </div>
