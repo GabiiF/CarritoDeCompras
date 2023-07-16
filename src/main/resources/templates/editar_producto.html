@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ingresar nuevo Producto</title>
+    <title>Editar Producto</title>
     <!-- Enlace al archivo CSS de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -56,27 +56,27 @@
                 <form th:action="@{/guardar}" th:object="${producto}" method="post">
                     <div class="form-group">
                         <label>Nombre : </label>
-                        <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Agregue el nombre del producto">
+                        <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Agregue el nombre del producto" required>
                     </div>
                     <div class="form-group">
                         <label>Descripcion : </label>
-                        <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Breve descipcion del producto">
+                        <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Breve descipcion del producto" required>
                     </div>
                     <div class="form-group">
                         <label>Categoria : </label>
-                        <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Categoria del producto">
+                        <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Categoria del producto" required>
                     </div>
                     <div class="form-group">
                         <label>Tipo : </label>
-                        <input type="text" name="tipo" th:field="*{tipo}" class="form-control" placeholder="Agregue el tipo del producto">
+                        <input type="text" name="tipo" th:field="*{tipo}" class="form-control" placeholder="Agregue el tipo del producto" required>
                     </div>
                     <div class="form-group">
                         <label>Precio : </label>
-                        <input type="number" name="precio" th:field="*{precio}" class="form-control" placeholder="Agregue el precio del producto">
+                        <input type="number" name="precio" th:field="*{precio}" class="form-control" placeholder="Agregue el precio del producto" required>
                     </div>
                     <div class="form-group">
                         <label>Tamaño : </label>
-                        <input type="number" name="tamanio" th:field="*{tamanio}" class="form-control" placeholder="Agregue el tamanio del producto">
+                        <input type="number" name="tamanio" th:field="*{tamanio}" class="form-control" placeholder="Agregue el tamanio del producto" required>
                     </div>
                     <div class="box-footer">
                         <button class="btn btn-success">Agregar</button>
