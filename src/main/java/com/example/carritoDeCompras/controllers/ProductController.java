@@ -21,5 +21,15 @@ public class ProductController {
         System.out.println(productList);
         return "index";
     }
+   /* @RequestMapping("/agregar-pedido")
+    public String hacerPedido(Model model){
+
+    }*/
+   @RequestMapping("/nuevo-producto")
+   public String agregarProducto(Model model){
+       Producto producto= new Producto();
+       model.addAttribute("producto",producto);
+       return nuevo_producto;
+   }
 
 }

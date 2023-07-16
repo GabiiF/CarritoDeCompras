@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carrito de Compras</title>
+    <title>Ingresar nuevo Producto</title>
     <!-- Enlace al archivo CSS de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -45,43 +45,9 @@
     </nav>
 </div>
 <!-- Termina navbar -->
-<!-- Empieza Tabla -->
-    <div class="container text-center">
-        <h1>Pedidos de Productos</h1>
-        <table class="table">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Tamaño</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="p1_0 : ${productList}">
-                    <td th:text="${p1_0.id}"></td>
-                    <td th:text="${p1_0.nombre}"></td>
-                    <td th:text="${p1_0.cantidad}"></td>
-                    <td th:text="${p1_0.tamanio}"></td>
-                    <td th:text="${p1_0.categoria}"></td>
-                    <td th:text="${p1_0.tipo}"></td>
-                    <td th:text="${p1_0.descripcion}"></td>
-                    <td th:text="${p1_0.precio}"></td>
-                    <td th:text="${p1_0.total}"></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-        <div th:if="${productList.isEmpty()}">
-            <p>No hay productos disponibles.</p>
-        </div>
-    </div>
-<!-- Termina Tabla -->
+<!-- Empieza Form -->
+
+<!-- Termina Form -->
     <!-- Incluir los scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
