@@ -72,7 +72,7 @@
                     <td th:text="${pedido.producto.precio}"></td>
                     <td th:text="${pedido.total}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{'/editar-pedido/' + ${pedido.id}}">Editar</a>
+                        <a class="btn btn-primary" th:href="@{'editar-pedido/' + ${pedido.id}}">Editar</a>
                         &nbsp;
                         <a class="btn btn-danger" th:href="@{'/eliminar-pedido/' + ${pedido.id}}">Eliminar</a>
                     </td>

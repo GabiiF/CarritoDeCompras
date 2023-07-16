@@ -35,32 +35,6 @@ public class PedidoController {
         return "nuevo_pedido";
     }*/
 
-    /*-------   prueba ---------*/
-    @PostMapping("/actualizar-total")
-    public String actualizarTotal(@RequestParam("id") Integer id, @RequestParam("cantidad") int cantidad) {
-        // Recuperar el objeto Pedido de la base de datos
-        Optional<Pedido> optionalPedido = pedidoRepository.findById(id);
-        if (optionalPedido.isPresent()) {
-            Pedido pedido = optionalPedido.get();
-
-            // Obtener el objeto Producto asociado al pedido
-            Producto producto = pedido.getProducto();
-
-            // Obtener el precio del producto
-            double precio = producto.getPrecio();
-
-            // Calcular el nuevo total
-            double total = cantidad * precio;
-
-            // Actualizar el total en el objeto Pedido
-            pedido.setTotal(total);
-
-            // Guardar el objeto Pedido actualizado en la base de datos
-            pedidoRepository.save(pedido);
-        }
-        return "redirect:/"; // Redirigir a la página del carrito de compras
-    }
-    /*----------------------------*/
     @RequestMapping("/nuevo-pedido")
     public String agregarPedido(Model model){
         List<Producto> listaProductos= productRepository.findAll();
@@ -70,15 +44,6 @@ public class PedidoController {
         model.addAttribute("listaProductos",listaProductos);
         return "nuevo_pedido";
     }
-    /*@RequestMapping("/nuevo-pedido")
-    public String agregarPedido(Model model){
-        List<Producto> listaProducto= productRepository.findAll();
-
-        Pedido pedido= new Pedido();
-        model.addAttribute("pedido",pedido);
-        model.addAttribute("listaProducto",listaProducto);
-        return "pedido_formulario";
-    }*/
     /*@PostMapping("/guardar-pedido")
     //@ModelAttribute-> atributo modelo que es el th:object=producto
     public String guardarPedido(Pedido pedido){
@@ -95,11 +60,12 @@ public class PedidoController {
         return "redirect:/";
     }
 
-
-
     @GetMapping("/editar-pedido/{id}")
     public String editarPedido(@PathVariable("id") Integer id, Model model){
+        List<Producto> listaProductos= productRepository.findAll();
         Pedido pedido=pedidoRepository.findById(id).get();
+
+        model.addAttribute("listaProductos",listaProductos);
         model.addAttribute("pedido",pedido);
         return "editar_pedido";
     }
