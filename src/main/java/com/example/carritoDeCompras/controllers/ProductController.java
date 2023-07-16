@@ -32,7 +32,6 @@ public class ProductController {
     }
    /* @RequestMapping("/agregar-pedido")
     public String hacerPedido(Model model){
-
     }*/
    @RequestMapping("/nuevo-producto")
    public String agregarProducto(Model model){
