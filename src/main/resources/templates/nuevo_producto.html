@@ -28,10 +28,10 @@
                         <a class="nav-link active text-bg-dark" aria-current="page" href="/agregar-pedido">Agregar pedido</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-bg-dark" aria-current="page" href="/nuevo-producto">Agregar producto</a>
+                        <a class="nav-link active text-bg-dark" aria-current="page" href="/productos">Lista de productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#fecha">El lugar y la fecha</a>
+                        <a class="nav-link text-secondary" href="/categorias">Lista de Categorias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-secondary" href="#orador">Conviertete en orador</a>
@@ -64,8 +64,12 @@
                     </div>
                     <div class="form-group">
                         <label>Categoria : </label>
-                        <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Categoria del producto" required>
-                    </div>
+                        <select th:field="*{categoria}" class="form-control" required>
+                            <th:block th:each="categoria : ${listaCategorias}">
+                                <option th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
+                            </th:block>
+                        </select>
+                        </div>
                     <div class="form-group">
                         <label>Tipo : </label>
                         <input type="text" name="tipo" th:field="*{tipo}" class="form-control" placeholder="Agregue el tipo del producto" required>

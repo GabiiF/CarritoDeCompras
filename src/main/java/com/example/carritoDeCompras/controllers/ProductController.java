@@ -1,6 +1,8 @@
 package com.example.carritoDeCompras.controllers;
 
+import com.example.carritoDeCompras.Repositories.CategoriaRepository;
 import com.example.carritoDeCompras.Services.ProductService;
+import com.example.carritoDeCompras.entities.Categoria;
 import com.example.carritoDeCompras.entities.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +19,16 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
-    @RequestMapping("/")
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+    @RequestMapping("/productos")
     public String homePage(Model model){
         List<Producto> productList= productService.listAll();
         //accedemos a la lista en el html por este nombre
         model.addAttribute("productList",productList);
         System.out.println(productList);
-        return "index";
+        return "/productos";
     }
    /* @RequestMapping("/agregar-pedido")
     public String hacerPedido(Model model){
@@ -31,17 +36,20 @@ public class ProductController {
     }*/
    @RequestMapping("/nuevo-producto")
    public String agregarProducto(Model model){
+       List<Categoria> listaCategorias= categoriaRepository.findAll();
+
        Producto producto= new Producto();
        model.addAttribute("producto",producto);
+       model.addAttribute("listaCategorias",listaCategorias);
        return "nuevo_producto";
    }
     @RequestMapping(value="/guardar", method= RequestMethod.POST)
     //@ModelAttribute-> atributo modelo que es el th:object=producto
     public String guardarProducto(@ModelAttribute("producto") Producto producto){
         productService.save(producto);//guardamos
-        return "redirect:/";
+        return "redirect:/productos";
     }
-    @RequestMapping("/editar-producto/{id}")
+    @RequestMapping("/productos/editar-producto/{id}")
     //@PathVariable-> variable que le paso por URL
     public ModelAndView editarProducto(@PathVariable(name="id") Long id){
        ModelAndView model= new ModelAndView("editar_producto");
@@ -52,10 +60,10 @@ public class ProductController {
        return model;
     }
 
-    @RequestMapping("/eliminar-producto/{id}")
+    @RequestMapping("/productos/eliminar-producto/{id}")
     //@PathVariable-> variable que le paso por URL
     public String eliminarProducto(@PathVariable(name="id") Long id){
         productService.delete(id);
-        return "redirect:/";
+        return "redirect:/productos";
     }
 }
