@@ -52,4 +52,10 @@ public class ProductController {
        return model;
     }
 
+    @RequestMapping("/eliminar-producto/{id}")
+    //@PathVariable-> variable que le paso por URL
+    public String eliminarProducto(@PathVariable(name="id") Long id){
+        productService.delete(id);
+        return "redirect:/";
+    }
 }
