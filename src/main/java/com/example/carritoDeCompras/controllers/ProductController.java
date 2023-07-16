@@ -5,7 +5,9 @@ import com.example.carritoDeCompras.entities.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -31,5 +33,11 @@ public class ProductController {
        model.addAttribute("producto",producto);
        return "nuevo_producto";
    }
+    @RequestMapping(value="/guardar", method= RequestMethod.POST)
+    //@ModelAttribute= atributo modelo que es el th:object=producto
+    public String guardarProducto(@ModelAttribute("producto") Producto producto){
+        productService.save(producto);//guardamos
+        return "redirect:/";
+    }
 
 }
