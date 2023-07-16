@@ -25,19 +25,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav fw-semibold">
                     <li class="nav-item">
-                        <a class="nav-link active text-bg-dark" aria-current="page" href="/agregar-pedido">Agregar pedido</a>
+                        <a class="nav-link active text-bg-dark" aria-current="page" href="/">Agregar pedido</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-bg-dark" aria-current="page" href="/productos">Lista de productos</a>
+                        <a class="nav-link active text-secondary" aria-current="page" href="/productos">Lista de productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="/categorias">Lista de Categorias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#orador">Conviertete en orador</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-success" href="comprar_tickets.html">Comprar tickets</a>
+                        <a class="nav-link text-success" href="/categorias">Lista de Categorias</a>
                     </li>
                 </ul>
             </div>
@@ -50,34 +44,23 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class="text-center">Agregar nuevo Producto</h1>
+            <h1 class="text-center">Agregar nuevo Pedido</h1>
             <div class="card-body">
                 <!-- cuando apreto el boton enviar hace la accion -->
-                <form th:action="@{/guardar}" th:object="${producto}" method="post">
+                <form th:action="@{/guardar-pedido}" th:object="${pedido}" method="post">
                     <div class="form-group">
-                        <label>Nombre : </label>
-                        <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Agregue el nombre del producto" required>
+                        <label>Producto ID : </label>
+                        <select th:field="*{producto}" class="form-control" required>
+                            <th:block th:each="producto : ${listaProductos}">
+                                <option th:text="${producto.nombre}" th:value="${producto.id}"></option>
+                            </th:block>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Descripcion : </label>
-                        <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Breve descipcion del producto" required>
+                        <label>Cantidad : </label>
+                        <input type="number" name="cantidad" th:field="*{cantidad}" class="form-control" min="1" placeholder="Agregue la cantidad requerida del producto" required>
                     </div>
-                    <div class="form-group">
-                        <label>Categoria : </label>
-                        <input type="text" name="categoria" th:field="*{categoria}" class="form-control" placeholder="Categoria del producto" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Tipo : </label>
-                        <input type="text" name="tipo" th:field="*{tipo}" class="form-control" placeholder="Agregue el tipo del producto" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Precio : </label>
-                        <input type="number" name="precio" th:field="*{precio}" class="form-control" min="1" placeholder="Agregue el precio del producto" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Tamaño : </label>
-                        <input type="number" name="tamanio" th:field="*{tamanio}" class="form-control" placeholder="Agregue el tamanio del producto" required>
-                    </div>
+                    <!--<input type="hidden" th:field="*{total}" th:value="${total}"/> -->
                     <div class="box-footer">
                         <button class="btn btn-success">Agregar</button>
                     </div>

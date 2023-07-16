@@ -25,19 +25,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav fw-semibold">
                     <li class="nav-item">
-                        <<a class="nav-link active text-bg-dark" aria-current="page" href="/agregar-pedido">Agregar pedido</a>
+                        <a class="nav-link active text-bg-dark" aria-current="page" href="/">Agregar pedido</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-bg-dark" aria-current="page" href="/productos">Lista de productos</a>
+                        <a class="nav-link active text-secondary" aria-current="page" href="/productos">Lista de productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="/categorias">Lista de Categorias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#orador">Conviertete en orador</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-success" href="comprar_tickets.html">Comprar tickets</a>
+                        <a class="nav-link text-success" href="/categorias">Lista de Categorias</a>
                     </li>
                 </ul>
             </div>
@@ -48,6 +42,9 @@
 <!-- Empieza Tabla -->
     <div class="container text-center">
         <h1>Pedidos de Productos</h1>
+        <div class="mb-2 d-flex justify-content-start">
+            <a class="btn btn-primary " th:href="@{'/nuevo-pedido'}">Nuevo+</a>
+        </div>
         <table class="table">
             <thead class="table-dark">
                 <tr>
@@ -64,26 +61,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="producto : ${productList}">
-                    <td th:text="${producto.id}"></td>
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.cantidad}"></td>
-                    <td th:text="${producto.tamanio}"></td>
-                    <td th:text="${producto.categoria}"></td>
-                    <td th:text="${producto.tipo}"></td>
-                    <td th:text="${producto.descripcion}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.total}"></td>
+                <tr th:each="pedido : ${listaPedidos}">
+                    <td th:text="${pedido.id}"></td>
+                    <td th:text="${pedido.producto.nombre}"></td>
+                    <td th:text="${pedido.cantidad}"></td>
+                    <td th:text="${pedido.producto.tamanio}"></td>
+                    <td th:text="${pedido.producto.categoria.nombre}"></td>
+                    <td th:text="${pedido.producto.tipo}"></td>
+                    <td th:text="${pedido.producto.descripcion}"></td>
+                    <td th:text="${pedido.producto.precio}"></td>
+                    <td th:text="${pedido.total}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{'/editar-producto/' + ${producto.id}}">Editar</a>
+                        <a class="btn btn-primary" th:href="@{'/editar-pedido/' + ${pedido.id}}">Editar</a>
                         &nbsp;
-                        <a class="btn btn-danger" th:href="@{'/eliminar-producto/' + ${producto.id}}">Eliminar</a>
+                        <a class="btn btn-danger" th:href="@{'/eliminar-pedido/' + ${pedido.id}}">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div th:if="${productList.isEmpty()}">
-            <p>No hay productos disponibles.</p>
+        <div th:if="${listaPedidos.isEmpty()}">
+            <p>No hay pedidos disponibles.</p>
         </div>
     </div>
 <!-- Termina Tabla -->
