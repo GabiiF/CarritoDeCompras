@@ -29,7 +29,7 @@ public class ProductController {
    public String agregarProducto(Model model){
        Producto producto= new Producto();
        model.addAttribute("producto",producto);
-       return nuevo_producto;
+       return "nuevo_producto";
    }
 
 }
