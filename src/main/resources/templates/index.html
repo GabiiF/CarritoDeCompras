@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carrito de Compras</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Empieza navbar -->
+<div class="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid mx-5">
+            <a href="/">
+                <img src="img/codoacodo.png" alt="Logo de codo a codo" width="90" height="64" class="d-inline-block align-text-top">
+            </a>
+            <span class="navbar-brand text-bg-dark">Proyecto Final</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--item a la derecha-->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav fw-semibold">
+                    <li class="nav-item">
+                        <a class="nav-link active text-bg-dark" aria-current="page" href="/agregar-pedido">Agregar pedido</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="#conoce">Los oradores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="#fecha">El lugar y la fecha</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="#orador">Conviertete en orador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="comprar_tickets.html">Comprar tickets</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- termina navbar-->
+<!-- Termina nav -->
+<!-- Empieza Tabla -->
+    <div class="container text-center">
+        <h1>Pedidos de Productos</h1>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Tamaño</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p1_0 : ${productList}">
+                    <td th:text="${p1_0.id}"></td>
+                    <td th:text="${p1_0.nombre}"></td>
+                    <td th:text="${p1_0.cantidad}"></td>
+                    <td th:text="${p1_0.tamanio}"></td>
+                    <td th:text="${p1_0.categoria}"></td>
+                    <td th:text="${p1_0.tipo}"></td>
+                    <td th:text="${p1_0.descripcion}"></td>
+                    <td th:text="${p1_0.precio}"></td>
+                    <td th:text="${p1_0.total}"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${productList.isEmpty()}">
+            <p>No hay productos disponibles.</p>
+        </div>
+    </div>
+<!-- Termina Tabla -->
+    <!-- Incluir los scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
